@@ -1,0 +1,1 @@
+<p>Hello,</p><p>Please find attached the customer account statement for <strong>{{ $statement['customer']['customer_name'] ?: $statement['customer']['customer_code'] }}</strong>, covering {{ $statement['period']['from'] }} to {{ $statement['period']['to'] }}.</p><p>Regards,<br>Finance Team</p>

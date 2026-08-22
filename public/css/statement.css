@@ -1,0 +1,242 @@
+@page {
+    size: A4 portrait;
+    margin: 10mm 9mm 12mm 9mm;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 8.3pt;
+    line-height: 1.25;
+    color: #111;
+}
+
+.page {
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Company header */
+
+.company-header {
+    width: 100%;
+    margin-bottom: 5mm;
+}
+
+.company-details {
+    width: 48%;
+    vertical-align: top;
+    font-size: 8pt;
+    line-height: 1.35;
+}
+
+.company-name {
+    margin-bottom: 2px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.document-label {
+    width: 52%;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+.document-label span {
+    font-size: 9pt;
+}
+
+/* Period */
+
+.period-row {
+    width: 100%;
+    margin-bottom: 4mm;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.period-row td {
+    padding: 5px 2px;
+    font-size: 9pt;
+}
+
+/* Issued-to and summary */
+
+.information-grid {
+    width: 100%;
+    margin-bottom: 5mm;
+}
+
+.information-grid > tbody > tr > td {
+    vertical-align: top;
+}
+
+.issued-to {
+    width: 53%;
+    padding-right: 7mm;
+}
+
+.summary-cell {
+    width: 47%;
+    padding-left: 4mm;
+}
+
+.section-heading {
+    margin-bottom: 3px;
+    font-weight: bold;
+    font-size: 9pt;
+}
+
+.details-table,
+.summary-table {
+    width: 100%;
+}
+
+.details-table td,
+.summary-table td {
+    padding: 1px 0;
+    vertical-align: top;
+}
+
+.details-table .label {
+    width: 19mm;
+}
+
+.details-table .separator {
+    width: 4mm;
+    text-align: center;
+}
+
+.summary-label {
+    width: 32mm;
+}
+
+.summary-separator {
+    width: 4mm;
+    text-align: center;
+}
+
+.summary-value {
+    white-space: nowrap;
+    text-align: right;
+    font-family: DejaVu Sans Mono, monospace;
+}
+
+.closing-row td {
+    padding-top: 3px;
+    font-weight: bold;
+    border-top: 1px solid #777;
+}
+
+/* Main transaction table */
+
+.statement-table {
+    width: 100%;
+    table-layout: fixed;
+    border: 1px solid #222;
+    font-size: 7.3pt;
+}
+
+.statement-table thead {
+    display: table-header-group;
+}
+
+.statement-table tr {
+    page-break-inside: avoid;
+}
+
+.statement-table th,
+.statement-table td {
+    border: 0.55px solid #555;
+    padding: 3px 4px;
+    vertical-align: middle;
+}
+
+.table-caption-row th {
+    padding: 4px;
+    background: #e9e9e9;
+    border-bottom: 1px solid #222;
+    font-size: 9pt;
+    text-align: center;
+}
+
+.column-headings th {
+    padding: 4px 3px;
+    background: #f3f3f3;
+    font-size: 7.5pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.date-column {
+    width: 11%;
+}
+
+.type-column {
+    width: 17%;
+}
+
+.reference-column {
+    width: 29%;
+}
+
+.amount-column {
+    width: 13%;
+}
+
+.balance-column {
+    width: 17%;
+}
+
+.statement-table .date {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.statement-table .type {
+    text-align: left;
+}
+
+.statement-table .reference {
+    text-align: left;
+}
+
+.statement-table .number {
+    white-space: nowrap;
+    text-align: right;
+    font-family: DejaVu Sans Mono, monospace;
+    font-size: 7pt;
+}
+
+.opening-balance-row td {
+    background: #fafafa;
+}
+
+.opening-label {
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer-note {
+    margin-top: 4mm;
+    text-align: center;
+    font-size: 7pt;
+    color: #555;
+}
