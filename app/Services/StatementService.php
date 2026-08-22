@@ -41,12 +41,17 @@ class StatementService
 
     public function statement(string $salesOrg, string $soldToParty, string $from, string $to): array
     {
-        $openingMonth = CarbonImmutable::parse($from)->subMonth();
+        $periodStart = CarbonImmutable::parse($from);
         $openingBalance = (float) DB::table('customer_balance')
             ->whereRaw('LOWER(sales_org) = LOWER(?)', [$salesOrg])
             ->where('customer_code', $soldToParty)
-            ->where('fiscalyear', $openingMonth->year)
-            ->where('permonth', $openingMonth->month)
+            ->where(function ($query) use ($periodStart) {
+                $query->where('fiscalyear', '<', $periodStart->year)
+                    ->orWhere(function ($query) use ($periodStart) {
+                        $query->where('fiscalyear', $periodStart->year)
+                            ->where('permonth', '<', $periodStart->month);
+                    });
+            })
             ->sum('local_balance');
 
         $rows = DB::table('customer_statement')
