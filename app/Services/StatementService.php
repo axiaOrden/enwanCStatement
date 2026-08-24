@@ -45,13 +45,7 @@ class StatementService
         $openingBalance = (float) DB::table('customer_balance')
             ->whereRaw('LOWER(sales_org) = LOWER(?)', [$salesOrg])
             ->where('customer_code', $soldToParty)
-            ->where(function ($query) use ($periodStart) {
-                $query->where('fiscalyear', '<', $periodStart->year)
-                    ->orWhere(function ($query) use ($periodStart) {
-                        $query->where('fiscalyear', $periodStart->year)
-                            ->where('permonth', '<', $periodStart->month);
-                    });
-            })
+            ->whereRaw('CONCAT(fiscalyear, permonth) < ?', [$periodStart->format('Ym')])
             ->sum('local_balance');
 
         $rows = DB::table('customer_statement')
@@ -77,11 +71,12 @@ class StatementService
             $row['credit'] = $dc === 'D' ? 0.0 : $amount;
             if ($dc === 'D') {
                 $totalDebit += $amount;
-                $balance += $amount;
             } else {
                 $totalCredit += $amount;
-                $balance -= $amount;
             }
+            // Running balance follows the signed source amount independently
+            // of the debit/credit column used for presentation.
+            $balance += $rawAmount;
             $row['balance'] = $balance;
         }
         unset($row);
