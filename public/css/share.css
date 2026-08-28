@@ -1,69 +1,13 @@
-.preview-actions,
-.share-form {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+.share-form { display: flex; align-items: center; gap: 6px; }
+.email-field { position: relative; width: 176px; height: 38px; display: flex; align-items: center; color: #6f6876; background: var(--surface-low); border: 1px solid transparent; border-radius: 13px; transition: background .2s ease, border .2s ease, box-shadow .2s ease; }
+.email-field:focus-within { color: var(--primary); background: #fff; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(96,66,166,.11); }
+.email-field svg { position: absolute; left: 11px; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.email-field input { width: 100%; height: 100%; padding: 0 9px 0 33px; border: 0; background: transparent; font-size: 9.5px; }
+.email-field input::placeholder { color: #8b8490; }
+.share-form button { height: 38px; padding: 0 13px; border: 0; border-radius: 13px 13px 13px 5px; color: #fff; background: var(--primary); font-size: 9px; font-weight: 800; cursor: pointer; box-shadow: 0 6px 14px rgba(96,66,166,.17); transition: background .2s ease, transform .2s ease; }
+.share-form button:hover { background: var(--primary-strong); }
+.share-form button:active { transform: scale(.96); }
 
-.share-form input {
-    width: 215px;
-    height: 34px;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.share-form button {
-    height: 34px;
-    padding: 0 13px;
-    border: 0;
-    border-radius: 6px;
-    background: #2769b5;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 750;
-    cursor: pointer;
-}
-
-.toast {
-    position: fixed;
-    z-index: 10;
-    top: 18px;
-    left: 50%;
-    max-width: 560px;
-    padding: 12px 18px;
-    transform: translateX(-50%);
-    border-radius: 8px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 8px 24px #0003;
-}
-
-.toast.success { background: #18794e; }
-.toast.error { background: #b42318; }
-
-.user-area { display: flex; align-items: center; gap: 14px; color: #c8d3e2; font-size: 12px; }
-.user-area form { margin: 0; }
-.user-area button { padding: 7px 11px; border: 1px solid #49617f; border-radius: 6px; background: transparent; color: #fff; cursor: pointer; }
-.pagination { padding: 8px 20px 14px; }
-.pagination nav > div:first-child { display: flex; justify-content: space-between; }
-.pagination nav > div:last-child { display: none; }
-
-@media (max-width: 1100px) {
-    .preview-toolbar {
-        height: auto;
-        min-height: 54px;
-        padding: 10px 14px;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .preview-actions {
-        align-items: flex-end;
-        flex-direction: column;
-    }
-
-    .share-form input { width: 185px; }
+@media (max-width: 520px) {
+    .email-field { width: auto; }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class StatementService
@@ -39,13 +40,29 @@ class StatementService
             ->simplePaginate(100)->withQueryString();
     }
 
+    public function statementRecipients(string $salesOrg): Collection
+    {
+        return DB::table('snapshot_customers')
+            ->select('sold_to_party')
+            ->selectRaw('MAX(customer_name) AS customer_name, MAX(TRIM(email)) AS email')
+            ->whereRaw('LOWER(sales_org) = LOWER(?)', [$salesOrg])
+            ->whereNotNull('sold_to_party')
+            ->where('sold_to_party', '<>', '')
+            ->whereNotNull('email')
+            ->whereRaw("TRIM(email) <> ''")
+            ->groupBy('sold_to_party')
+            ->orderBy('sold_to_party')
+            ->get()
+            ->map(fn ($row) => (array) $row);
+    }
+
     public function statement(string $salesOrg, string $soldToParty, string $from, string $to): array
     {
         $periodStart = CarbonImmutable::parse($from);
         $openingBalance = (float) DB::table('customer_balance')
             ->whereRaw('LOWER(sales_org) = LOWER(?)', [$salesOrg])
             ->where('customer_code', $soldToParty)
-            ->whereRaw('CONCAT(fiscalyear, permonth) < ?', [$periodStart->format('Ym')])
+            ->whereRaw("CONCAT(fiscalyear, LPAD(permonth, 2, '0')) < ?", [$periodStart->format('Ym')])
             ->sum('local_balance');
 
         $rows = DB::table('customer_statement')
