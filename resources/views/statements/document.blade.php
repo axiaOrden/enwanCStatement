@@ -25,7 +25,7 @@
             $statementPages[] = $currentPage;
             $currentPage = [];
             $currentWeight = 0;
-            $pageCapacity = 72;
+            $pageCapacity = 58;
         }
 
         $currentPage[] = $row;
@@ -83,7 +83,7 @@
         </table>
 
         @foreach($statementPages as $pageIndex => $pageTransactions)
-            <div class="statement-page {{ !$loop->last ? 'statement-page-break' : '' }}">
+            <div class="statement-page {{ $pageIndex > 0 ? 'statement-page-continuation' : '' }}">
             <table class="statement-table">
                 <thead>
                     <tr class="table-caption-row"><th colspan="6">Customer Account Statement{{ $pageIndex > 0 ? ' (continued)' : '' }}</th></tr>

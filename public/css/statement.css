@@ -1,6 +1,6 @@
 @page {
     size: A4 portrait;
-    margin: 10mm 9mm 12mm 9mm;
+    margin: 0;
 }
 
 * {
@@ -21,7 +21,10 @@ body {
 }
 
 .page {
-    width: 100%;
+    width: auto;
+    margin: 0 14mm;
+    padding-top: 13mm;
+    padding-bottom: 15mm;
 }
 
 table {
@@ -193,8 +196,9 @@ th {
     page-break-inside: auto;
 }
 
-.statement-page-break {
-    page-break-after: always;
+.statement-page-continuation {
+    page-break-before: always;
+    padding-top: 13mm;
 }
 
 .statement-table th,
